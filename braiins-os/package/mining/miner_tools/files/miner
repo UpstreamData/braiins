@@ -60,6 +60,15 @@ ip_report() {
 }
 
 fault_light() {
+  if [ $# -eq 0 ]; then
+    if [ -e /sys/class/leds/"Red LED"/delay_on ]; then
+      echo "on"
+      exit 0
+    else
+      echo "off"
+      exit 0
+    fi
+  fi
 	if [ $# -ne 1 -o \( "$1" != 'on' -a "$1" != 'off' \) ]; then
 		echo "command 'fault_light' takes only one argument [on|off]" >&2
 		exit 1
