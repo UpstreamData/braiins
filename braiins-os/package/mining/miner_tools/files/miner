@@ -61,7 +61,7 @@ ip_report() {
 
 fault_light() {
   if [ $# -eq 0 ]; then
-    if [ -e /sys/class/leds/"Red LED"/delay_on ]; then
+    if [ "$(cat /sys/class/leds/'Red LED'/delay_off)" == 50 ]; then
       echo "on"
       exit 0
     else
